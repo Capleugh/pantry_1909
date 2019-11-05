@@ -29,4 +29,11 @@ class RecipeTest < Minitest::Test
     }
     assert_equal expected, @mac_and_cheese.ingredients_required
   end
+
+  def test_it_can_find_amount_of_ingredients_required
+    @mac_and_cheese.amount_required(@cheese)
+    @mac_and_cheese.amount_required(@mac)
+
+    assert_equal [@cheese, @mac], @mac_and_cheese.ingredients
+  end
 end
