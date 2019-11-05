@@ -15,16 +15,22 @@ class Pantry
   end
 
   def restock(ingredient, amount)
-    # @stock.reduce({}) do |stocked, amount|
-    #   if stocked[ingredient] = 0
-    #     stocked[ingredient] += amount
-    #   else
-    #     stocked[ingredient] = amount
-    #   end
-    #   stocked
-    # end
     if stock_check(ingredient)
       @stock[ingredient] += amount
     end
+  end
+
+  def enough_ingredients_for?(recipe)
+    # require "pry"; binding.pry
+    recipe_amount = recipe.ingredients_required.map do |ingredient, amount|
+      # require "pry"; binding.pry
+         amount <= stock_check(ingredient)
+
+    end
+
+    @stock.find do |ingredient, amount|
+    #   # require "pry"; binding.pry
+    #   amount >= recipe_amount
+    # end
   end
 end
